@@ -1,12 +1,5 @@
 NAME = libft.a
-SOURCES = \
-ft_putchar_fd.c 	\
-ft_putstr_fd.c		\
-ft_u_putnbr_fd.c	\
-ft_putnbr_fd.c 		\
-ft_strlen.c 		\
-ft_toupper.c 		\
-ft_putnbr_hex.c
+SOURCES = *.c
 
 OBJECTS = $(SOURCES:.c=.o)
 

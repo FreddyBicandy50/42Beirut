@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_hex.c                                    :+:      :+:    :+:   */
+/*   ft_putstr_hex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbicandy <fbicandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 14:17:43 by fbicandy          #+#    #+#             */
-/*   Updated: 2024/06/29 21:00:31 by fbicandy         ###   ########.fr       */
+/*   Created: 2024/06/29 21:17:37 by fbicandy          #+#    #+#             */
+/*   Updated: 2024/06/29 21:57:24 by fbicandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putnbr_hex(unsigned int num, int isupper)
+int	ft_putstr_hex(va_list args)
 {
-	char	*hex_digits;
-	char	hex[9];
-	int		count;
-	int		i;
+	unsigned long long	addr;
+	void				*ptr;
+	char				hex[17];
+	int					count;
+	int					i;
 
-	hex_digits = "0123456789abcdef";
-	if (isupper)
-		hex_digits = "0123456789ABCDEF";
-	i = 8;
 	count = 0;
-	hex[i] = '\0';
-	if (num == 0)
+	i = 16;
+	ptr = va_arg(args, void *);
+	addr = (unsigned long long)ptr;
+	if (ptr == NULL)
+		return (ft_putstr_fd("(nil)", 1));
+	hex[i--] = '\0';
+	if (addr == 0)
+		hex[i--] = '0';
+	while (addr > 0)
 	{
-		ft_putchar_fd('0', 1);
-		return (1);
+		hex[i--] = "0123456789abcdef"[addr % 16];
+		addr /= 16;
 	}
-	while (num > 0)
-	{
-		count++;
-		hex[--i] = hex_digits[num % 16];
-		num /= 16;
-	}
-	ft_putstr_fd(&hex[i], 1);
+	count += ft_putstr_fd("0x", 1);
+	count += ft_putstr_fd(&hex[i + 1], 1);
 	return (count);
 }

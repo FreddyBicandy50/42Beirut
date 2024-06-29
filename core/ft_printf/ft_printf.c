@@ -6,7 +6,7 @@
 /*   By: fbicandy <fbicandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:01:56 by fbicandy          #+#    #+#             */
-/*   Updated: 2024/06/29 18:39:19 by fbicandy         ###   ########.fr       */
+/*   Updated: 2024/06/29 21:58:17 by fbicandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,38 @@
 #include <limits.h>
 #include "libft/libft.h"
 
+int	hexa_format(va_list args, const char format)
+{
+	int				count;
+	unsigned int	num;
+
+	num = va_arg(args, unsigned int);
+	count = 0;
+	if (format == 'x')
+		return (ft_putnbr_hex(num, 0));
+	if (format == 'X')
+		return (ft_putnbr_hex(num, 1));
+	if (format == 'p')
+		return (ft_putstr_hex(args));
+	return (count);
+}
+
 int	char_format(va_list args, const char format)
 {
-	int	count;
+	int		count;
+	char	*str;
 
 	count = 0;
 	if (format == 'c')
 		count = ft_putchar_fd(va_arg(args, int), 1);
 	if (format == 's')
-		count = ft_putstr_fd(va_arg(args, char *), 1);
+	{
+		str = va_arg(args, char *);
+		if (!str)
+			count = ft_putstr_fd("(null)", 1);
+		else
+			count = ft_putstr_fd(str, 1);
+	}
 	return (count);
 }
 
@@ -45,6 +68,13 @@ int	check_format(va_list args, const char format)
 		return (nbr_format(args, format));
 	if (format == 'c' || format == 's')
 		return (char_format(args, format));
+	if (format == 'p' || format == 'x' || format == 'X')
+		return (hexa_format(args, format));
+	if (format == '%')
+	{
+		ft_putchar_fd(format, 1);
+		return (1);
+	}
 	return (0);
 }
 
@@ -74,10 +104,3 @@ int	ft_printf(const char *PARAM, ...)
 	va_end(args);
 	return (count);
 }
-
-// int main(void)
-// {
-// 	printf("\nCOUNT=%d\n",printf("he%c",'d'));
-// 	printf("\nCOUNT=%d\n",ft_printf("he%c",'d'));
-// 	return (0);
-// }
