@@ -1,16 +1,7 @@
 {
     "files.associations": {
-        "type_traits": "c",
-        "libft.h": "c",
         "unistd.h": "c",
-        "stdarg.h": "c",
-        "stdio.h": "c",
-        "stdlib.h": "c",
-        "limits.h": "c",
-        "ft_printf.h": "c",
-        "bitset": "c",
-        "chrono": "c",
-        "algorithm": "c"
-    },
-    "C_Cpp.errorSquiggles": "disabled"
+        "stdint.h": "c",
+        "stdio.h": "c"
+    }
 }

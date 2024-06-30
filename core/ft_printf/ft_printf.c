@@ -6,11 +6,12 @@
 /*   By: fbicandy <fbicandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:01:56 by fbicandy          #+#    #+#             */
-/*   Updated: 2024/06/29 21:58:17 by fbicandy         ###   ########.fr       */
+/*   Updated: 2024/06/30 19:01:07 by fbicandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdarg.h>
 #include <limits.h>
 #include "libft/libft.h"
@@ -20,12 +21,17 @@ int	hexa_format(va_list args, const char format)
 	int				count;
 	unsigned int	num;
 
-	num = va_arg(args, unsigned int);
 	count = 0;
 	if (format == 'x')
+	{
+		num = va_arg(args, unsigned int);
 		return (ft_putnbr_hex(num, 0));
+	}
 	if (format == 'X')
+	{
+		num = va_arg(args, unsigned int);
 		return (ft_putnbr_hex(num, 1));
+	}
 	if (format == 'p')
 		return (ft_putstr_hex(args));
 	return (count);
@@ -103,4 +109,12 @@ int	ft_printf(const char *PARAM, ...)
 	}
 	va_end(args);
 	return (count);
+}
+
+int main(void)
+{
+	printf("\n%d\n", ft_printf("%p", (void *)10));
+	printf("\n%d\n", printf("%p", (void *)10));
+	
+	return (0);
 }

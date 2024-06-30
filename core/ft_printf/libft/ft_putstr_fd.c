@@ -6,11 +6,12 @@
 /*   By: fbicandy <fbicandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:52:45 by fbicandy          #+#    #+#             */
-/*   Updated: 2024/06/29 18:33:58 by fbicandy         ###   ########.fr       */
+/*   Updated: 2024/06/30 18:18:37 by fbicandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
 
 int	ft_putstr_fd(char *s, int fd)
 {
