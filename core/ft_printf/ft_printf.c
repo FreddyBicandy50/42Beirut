@@ -6,7 +6,7 @@
 /*   By: fbicandy <fbicandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:01:56 by fbicandy          #+#    #+#             */
-/*   Updated: 2024/06/30 19:01:07 by fbicandy         ###   ########.fr       */
+/*   Updated: 2024/06/30 22:24:47 by fbicandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,12 +109,4 @@ int	ft_printf(const char *PARAM, ...)
 	}
 	va_end(args);
 	return (count);
-}
-
-int main(void)
-{
-	printf("\n%d\n", ft_printf("%p", (void *)10));
-	printf("\n%d\n", printf("%p", (void *)10));
-	
-	return (0);
 }
